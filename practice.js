@@ -1,14 +1,13 @@
-function solution(land) {
-    for (let i = 1; i < land.length; i++) {
-        land[i][0] += Math.max(land[i - 1][1], land[i - 1][2], land[i - 1][3]);
-        land[i][1] += Math.max(land[i - 1][0], land[i - 1][2], land[i - 1][3]);
-        land[i][2] += Math.max(land[i - 1][0], land[i - 1][1], land[i - 1][3]);
-        land[i][3] += Math.max(land[i - 1][0], land[i - 1][1], land[i - 1][2]);
-    }
-    return Math.max(...land.pop());
+function solution(number, k) {
+    var answer = '';
+    number = number.split('');
+    for (let i = 0; i <= number.length - k; i++)
+        number.splice(number.indexOf(Math.min(...number).toString()), 1);
+    answer = number.join('');
+
+    return answer;
 }
-solution([
-    [1, 2, 3, 5],
-    [5, 6, 7, 8],
-    [4, 3, 2, 1],
-]); //16
+
+console.log(solution('1924', 2)); // "94"
+console.log(solution('1231234', 3)); // "3234"
+console.log(solution('4177252841', 4)); // "775841"
